@@ -5,6 +5,21 @@ the 2nd phrase of the system design
 
 - For a read-heavy system, a relational database such as MySQL can be a good fit
 
+## 1. QPS and web server
+- [link](https://medium.com/@lingyong/qps-and-web-server-database-relationship-reference-system-design-interview-f9f27879c961)
+- one web server handles 1K QPS
+- one SQL db (mysql/ postgreSQL) handles 1K QPS if the query is complicated with JOIN, the number could be lower
+    - 50,000 simple QPS, 
+- one NoSQL db (MongoDB/ Cassandra) handles 10K QPS
+- one NoSQL db (Redis/ Memcached) handles 1M QPS
+
+## 2. reliability
+1. data replicas to ensure data reliability
+2. use some consensus algo or consensus-based distributed db to ensure data consistency
+
+## 3. how to solve hot parition
+
+
 <br><br><br><br><br><br>
 
 
@@ -271,3 +286,34 @@ ORDER BY object_name OFFSET 10 LIMIT 10
 
 
 <br><br><br><br><br><br>
+
+
+# Netflix system design
+
+
+## 1. open connect
+    - non-streaming -> AWS
+    - streaming -> openConnection (CDN)
+        - bandwidth consumed by the video streaming
+        - latency due to the long distance
+
+## 2. backend
+
+
+## 3. client
+    - mobile
+    - TV
+    - PCs
+
+1. new movie
+    - uploading to aamzon s3
+    - netflix convert orginal to different format/ resolution
+
+2. push to differnt CDN servers
+    
+
+3. Zuul
+    - API gateway
+
+4. hystrix
+    - 
